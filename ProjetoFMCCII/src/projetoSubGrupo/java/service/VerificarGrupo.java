@@ -55,8 +55,8 @@ public class VerificarGrupo {
 
         for (int a : conjunto) {
             for (int b : conjunto) {
-                int result = operacao.operar(a, b);
-                if (!conjunto.contains(result)) return false;
+                int resultado = operacao.operar(a, b);
+                if (!conjunto.contains(resultado)) return false;
             }
         }
         return true;
@@ -125,7 +125,7 @@ public class VerificarGrupo {
      * @param conjunto
      * @param operacao
      * @param elementoNeutro
-     * @return
+     * @return true (Se cada elemento tiver um inverso) | false (Se pelo menos um elemento não tiver inverso).
      */
     private static boolean verificarInverso (Set <Integer> conjunto, Operacao operacao, int elementoNeutro) {
 

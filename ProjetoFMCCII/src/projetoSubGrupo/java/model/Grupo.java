@@ -4,13 +4,14 @@ import model.enuns.Operacao;
 import service.VerificarGrupo;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Classe que representa um objeto de grupo (Conjunto de números + Operação)
  */
 public class Grupo {
 
-    private HashSet<Integer> conjunto;
+    private Set<Integer> conjunto;
     private Operacao operacao;
     private Integer elementoNeutro;
 
@@ -21,7 +22,7 @@ public class Grupo {
      * @param conjunto
      * @param operacao
      */
-    public Grupo (HashSet <Integer> conjunto, Operacao operacao) {
+    public Grupo (Set<Integer> conjunto, Operacao operacao) {
 
         ResultadoVerificacaoGrupo resultado = VerificarGrupo.verificarGrupo(conjunto, operacao);
 
@@ -34,7 +35,7 @@ public class Grupo {
         this.elementoNeutro = resultado.getElementoNeutro();
     }
 
-    public HashSet<Integer> getConjunto() {
+    public Set<Integer> getConjunto() {
         return conjunto;
     }
 

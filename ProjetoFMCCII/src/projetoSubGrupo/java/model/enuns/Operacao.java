@@ -6,16 +6,22 @@ package model.enuns;
  */
 public enum Operacao {
     ADICAO {
-        public int operar (int a, int b) {
-            return a + b;
+        public int operar (int a, int b, int modulo) {
+            int resultado = a+b;
+            return aplicarModulo(resultado, modulo);
         }
     },
 
     MULTIPLICACAO {
-        public int operar (int a, int b) {
-            return a*b;
+        public int operar (int a, int b, int modulo) {
+            int resultado =  a*b;
+            return aplicarModulo (resultado, modulo);
         }
     };
 
-    public abstract int operar(int a, int b);
+    private static int aplicarModulo (int resultado, int modulo) {
+        return Math.floorMod(resultado, modulo);
+    }
+
+    public abstract int operar(int a, int b, int modulo);
 }

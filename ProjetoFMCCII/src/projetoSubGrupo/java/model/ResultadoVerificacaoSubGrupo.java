@@ -40,7 +40,5 @@ public class ResultadoVerificacaoSubGrupo {
     public boolean isElementoNeutro() {
         return elementoNeutro;
     }
-    public boolean isResultado() {
-        return resultado;
-    }
+    public boolean isResultado() {return resultado; }
 }

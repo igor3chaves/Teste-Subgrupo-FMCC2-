@@ -14,6 +14,7 @@ public class Grupo {
     private Set<Integer> conjunto;
     private Operacao operacao;
     private Integer elementoNeutro;
+    private Integer modulo;
 
     /**
      * Classe responsável pela criação do objeto
@@ -22,17 +23,18 @@ public class Grupo {
      * @param conjunto
      * @param operacao
      */
-    public Grupo (Set<Integer> conjunto, Operacao operacao) {
+    public Grupo (Set<Integer> conjunto, Operacao operacao, Integer modulo) {
 
-        ResultadoVerificacaoGrupo resultado = VerificarGrupo.verificarGrupo(conjunto, operacao);
+        ResultadoVerificacaoGrupo resultado = VerificarGrupo.verificarGrupo(conjunto, operacao, modulo);
 
         if (!resultado.isResultado()) {
-            throw new IllegalArgumentException ("O conjunto de números com essa operação não formamm um grupo");
+            throw new IllegalArgumentException ("O conjunto de números com essa operação não forma um grupo");
         }
 
         this.conjunto = conjunto;
         this.operacao = operacao;
         this.elementoNeutro = resultado.getElementoNeutro();
+        this.modulo = modulo;
     }
 
     public Set<Integer> getConjunto() {
@@ -45,5 +47,9 @@ public class Grupo {
 
     public Operacao getOperacao() {
         return operacao;
+    }
+
+    public Integer getModulo() {
+        return modulo;
     }
 }

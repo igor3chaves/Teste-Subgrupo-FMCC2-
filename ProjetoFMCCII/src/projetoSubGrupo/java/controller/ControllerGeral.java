@@ -17,13 +17,16 @@ public class ControllerGeral {
         return Normalizer.normalize(texto, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
     }
 
-    private Grupo criarGrupo (String numeros, String operacao) {
+    private Grupo criarGrupo (String numeros, String operacao, Integer modulo) {
 
         if (numeros == null || numeros.isBlank()) {
             throw new IllegalArgumentException("Conjunto de números vazio.");
         }
         if (operacao == null || operacao.isBlank()) {
             throw new IllegalArgumentException("Operação vazia.");
+        }
+        if (modulo == null) {
+            throw new IllegalArgumentException("Modulo vazio.");
         }
 
         Set<Integer> conjunto = new HashSet<>();
@@ -51,10 +54,10 @@ public class ControllerGeral {
             operacaoO = Operacao.valueOf(normalizarString(operacao).toUpperCase());
         }
         catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException ("Tipo de operação inválida. \nOperações possíveis = [SOMA / MULTIPLICAÇÃO]");
+            throw new IllegalArgumentException ("Tipo de operação inválida. \nOperações possíveis = [ADIÇÃO / MULTIPLICAÇÃO]");
         }
 
-        return  new Grupo(conjunto, operacaoO);
+        return  new Grupo(conjunto, operacaoO, modulo);
     }
 
     private ResultadoVerificacaoSubGrupo verificarSubGrupo (Grupo grupoBase, Grupo candidatoSubGrupo) {
@@ -96,11 +99,12 @@ public class ControllerGeral {
         return sb.toString();
     }
 
-    public String resultadoSubGrupo (String numerosGrupoBase, String operacaoGrupoBase,
-                                     String numerosCandidatoSubGrupo, String operacaoCandidatoSubGrupo) {
+    public String resultadoSubGrupo (String numerosGrupoBase, String operacaoGrupoBase, Integer moduloGrupoBase,
+                                     String numerosCandidatoSubGrupo, String operacaoCandidatoSubGrupo,
+                                     Integer moduloCandidatoSubGrupo) {
 
-        Grupo grupoBase = criarGrupo(numerosGrupoBase, operacaoGrupoBase);
-        Grupo candidatoSubGrupo = criarGrupo(numerosCandidatoSubGrupo, operacaoCandidatoSubGrupo);
+        Grupo grupoBase = criarGrupo(numerosGrupoBase, operacaoGrupoBase, moduloGrupoBase);
+        Grupo candidatoSubGrupo = criarGrupo(numerosCandidatoSubGrupo, operacaoCandidatoSubGrupo, moduloCandidatoSubGrupo);
 
         ResultadoVerificacaoSubGrupo resultado = this.verificarSubGrupo(grupoBase, candidatoSubGrupo);
 

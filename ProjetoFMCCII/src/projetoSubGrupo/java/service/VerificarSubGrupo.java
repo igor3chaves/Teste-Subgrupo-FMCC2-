@@ -28,7 +28,7 @@ public class VerificarSubGrupo {
 
         boolean subConjunto = verificarSubConjunto (grupoBase, candidatoSubGrupo);
 
-        boolean fechamento = verificarFechamento(grupoBase, candidatoSubGrupo);
+        boolean fechamento = verificarFechamento(grupoBase, candidatoSubGrupo, candidatoSubGrupo.getModulo());
 
         boolean elementoNeutro = verificarElementoNeutro(grupoBase, candidatoSubGrupo);
 
@@ -68,7 +68,7 @@ public class VerificarSubGrupo {
      * @param candidatoSubGrupo
      * @return
      */
-    private static boolean verificarFechamento (Grupo grupoBase, Grupo candidatoSubGrupo) {
+    private static boolean verificarFechamento (Grupo grupoBase, Grupo candidatoSubGrupo, Integer modulo) {
 
         Set <Integer> conjuntoCandidatoSubGrupo = candidatoSubGrupo.getConjunto();
         Operacao operacaoGrupoBase = grupoBase.getOperacao();
@@ -76,7 +76,7 @@ public class VerificarSubGrupo {
         for (int a: conjuntoCandidatoSubGrupo) {
             for (int b: conjuntoCandidatoSubGrupo) {
 
-                int resultado = operacaoGrupoBase.operar(a,b);
+                int resultado = operacaoGrupoBase.operar(a,b, modulo);
 
                 if (!conjuntoCandidatoSubGrupo.contains(resultado)) {
                     return false;
